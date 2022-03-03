@@ -1,0 +1,24 @@
+{
+  "name": "yamaha-node",
+  "version": "1.0.0",
+  "description": "A nodejs libary for yamaha stereos",
+  "main": "yamaha-node.js",
+  "scripts": {
+    "test": "echo \"is a libarry\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "-"
+  },
+  "keywords": [
+    "yamaha",
+    "remote",
+    "reverse"
+  ],
+  "author": "DerZombiiie",
+  "license": "GPL-v3.0-or-later",
+  "dependencies": {
+    "node-fetch": "^2.6.7",
+    "xml2js": "^0.4.23"
+  }
+}

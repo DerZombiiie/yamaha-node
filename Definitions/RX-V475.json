@@ -1,0 +1,184 @@
+{
+	"model": "RX-V475",
+	"endpoint": "/YamahaRemoteControl/ctrl",
+	"features": [
+		{
+			"name": "power",
+			"type": "toggle",
+			"values": {
+				"tName": "On",
+				"fName": "Standby"
+			},
+			"mult": 0.1,
+			"setRequest": {
+				"data": "-"
+			},
+			"locationGet": {
+				"sReqId": "Basic_Status",
+				"location": ["YAMAHA_AV", "Main_Zone", 0, "Basic_Status", 0, "Power_Control", 0, "Power", 0]
+			}
+		},
+		{
+			"name": "sleep",
+			"type": "string",
+			"values": ["Off", "30 min", "60 min" ,"90 min"],
+			"setRequest": {
+				"data": "-"
+			},
+			"locationGet": {
+				"sReqId": "Basic_Status",
+				"location": ["YAMAHA_AV", "Main_Zone", 0, "Basic_Status", 0, "Power_Control", 0, "Sleep", 0]
+			}
+		},
+		{
+			"name": "volume",
+			"type": "range",
+			"values": {
+				"max": 20,
+				"min": -70,
+				"step": 0.5,
+				"avg": -40
+			},
+			"mult": 0.1,
+			"setRequest": {
+				"data": "<YAMAHA_AV cmd=\"PUT\"><Main_Zone><Volume><Lvl><Val>${data}</Val><Exp>1</Exp><Unit>dB</Unit></Lvl></Volume></Main_Zone></YAMAHA_AV>"
+			},
+			"locationGet": {
+				"sReqId": "Basic_Status",
+				"location": ["YAMAHA_AV", "Main_Zone", 0, "Basic_Status", 0,"Volume", 0, "Lvl", 0]
+			}
+		},
+		{
+			"name": "bass",
+			"type": "range",
+			"values": {
+				"max": 6,
+				"min": -6,
+				"step": 0.5,
+				"avg": 0
+			},
+			"mult": 0.1,
+			"setRequest": {
+				"data": "<YAMAHA_AV cmd=\"PUT\"><Main_Zone><Sound_Video><Tone><Bass><Val>${data}</Val><Exp>1</Exp><Unit>dB</Unit></Bass></Tone></Sound_Video></Main_Zone></YAMAHA_AV>"
+			},
+			"locationGet": {
+				"sReqId": "Basic_Status",
+				"location": ["YAMAHA_AV", "Main_Zone", 0, "Basic_Status", 0, "Sound_Video", 0, "Tone", 0, "Bass", 0]
+			}
+		},
+		{
+			"name": "treble",
+			"type": "range",
+			"values": {
+				"max": 6,
+				"min": -6,
+				"step": 0.5,
+				"avg": 0
+			},
+			"mult": 0.1,
+			"setRequest": {
+				"data": "<YAMAHA_AV cmd=\"PUT\"><Main_Zone><Sound_Video><Tone><Treble><Val>${data}</Val><Exp>1</Exp><Unit>dB</Unit></Treble></Tone></Sound_Video></Main_Zone></YAMAHA_AV>"
+			},
+			"locationGet": {
+				"sReqId": "Basic_Status",
+				"location": ["YAMAHA_AV", "Main_Zone", 0, "Basic_Status", 0, "Sound_Video", 0, "Tone", 0, "Treble", 0]
+			}
+		},
+		{
+			"name": "direct",
+			"type": "toggle",
+			"values": {
+				"tName": "On",
+				"fName": "Off"
+			},
+			"setRequest": {
+				"data": "-"
+			},
+			"locationGet": {
+				"sReqId": "Basic_Status",
+				"location": ["YAMAHA_AV", "Main_Zone", 0, "Basic_Status", 0, "Sound_Video", 0, "Direct", 0, "Mode", 0]
+			}
+		},
+		{
+			"name": "standby_through_info",
+			"type": "toggle",
+			"values": {
+				"tName": "On",
+				"fName": "Off"
+			},
+			"setRequest": {
+				"data": "-"
+			},
+			"locationGet": {
+				"sReqId": "Basic_Status",
+				"location": ["YAMAHA_AV", "Main_Zone", 0, "Basic_Status", 0, "Sound_Video", 0, "HDMI", 0, "Standby_Through_Info", 0]
+			}
+		},
+		{
+			"name": "adaptive_DRC",
+			"type": "toggle",
+			"values": {
+				"tName": "On",
+				"fName": "Off"
+			},
+			"setRequest": {
+				"data": "-"
+			},
+			"locationGet": {
+				"sReqId": "Basic_Status",
+				"location": ["YAMAHA_AV", "Main_Zone", 0, "Basic_Status", 0, "Sound_Video", 0, "Adaptive_DRC", 0]
+			}
+		},
+		{
+			"name": "OUT_1",
+			"type": "toggle",
+			"values": {
+				"tName": "On",
+				"fName": "Off"
+			},
+			"setRequest": {
+				"data": "-"
+			},
+			"locationGet": {
+				"sReqId": "Basic_Status",
+				"location": ["YAMAHA_AV", "Main_Zone", 0, "Basic_Status", 0, "Sound_Video", 0, "HDMI", 0, "Output", 0, "OUT_1", 0]
+			}
+		},
+		
+		{
+			"name": "input",
+			"type": "input",
+			"values": [
+				{"tName":"AV1","fName":null  ,"desc":"Analoge Video (yellow)"},
+				{"tName":"AV2","fName":null  ,"desc":"Analoge Video (yellow)"},
+				{"tName":"AV3","fName":null  ,"desc":"Analoge Video (yellow)"},
+				{"tName":"AV4","fName":"TV"  ,"desc":"Analoge Video (yellow)"},
+				{"tName":"AV5","fName":"TAPE","desc":"Analoge Video (yellow)"},
+				{"tName":"AV6","fName":null  ,"desc":"Analoge Video (yellow)"},
+				{"tName":"HDMI1","fName":null,"desc":"High-Definition Multimedia Interface"},
+				{"tName":"HDMI2","fName":null,"desc":"High-Definition Multimedia Interface"},
+				{"tName":"HDMI3","fName":null,"desc":"High-Definition Multimedia Interface"},
+				{"tName":"HDMI4","fName":null,"desc":"High-Definition Multimedia Interface"},
+				{"tName":"Spotify","fName":null,"desc":"Stream from Spotify (not implemented)"},
+				{"tName":"NET RADIO","fName":null,"desc":"Stream radio over the internet (not implemented)"},
+				{"tName":"SERVER","fName":null,"desc":"Stream from local DLNA / UPnP media-server"},
+				{"tName":"AUDIO","fName":"CD","desc":"Red & yellow jacks"},
+				{"tName":"V-AUX","fName":null,"desc":"Auxilary AV and sound input"}
+			],
+			"setRequest": {
+				"data": "<YAMAHA_AV cmd=\"PUT\"><Main_Zone><Input><Input_Sel>${data}</Input_Sel></Input></Main_Zone></YAMAHA_AV>"
+			},
+			"locationGet": {
+				"sReqId": "Basic_Status",
+				"location": ["YAMAHA_AV", "Main_Zone", 0, "Basic_Status", 0, "Input",0]
+			}
+		}
+
+	],
+	"requests": {
+		"Basic_Status": {
+			"cacheTime": 250,
+			"data": "<YAMAHA_AV cmd=\"GET\"><Main_Zone><Basic_Status>GetParam</Basic_Status></Main_Zone></YAMAHA_AV>"
+		}
+	}
+}
