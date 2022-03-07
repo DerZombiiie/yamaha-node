@@ -9,9 +9,9 @@
 				"tName": "On",
 				"fName": "Standby"
 			},
-			"mult": 0.1,
+			"mult": null,
 			"setRequest": {
-				"data": "-"
+				"data": "<YAMAHA_AV cmd=\"PUT\"><Main_Zone><Power_Control><Power>${data}</Power></Power_Control></Main_Zone></YAMAHA_AV>"
 			},
 			"locationGet": {
 				"sReqId": "Basic_Status",
@@ -23,7 +23,7 @@
 			"type": "string",
 			"values": ["Off", "30 min", "60 min" ,"90 min"],
 			"setRequest": {
-				"data": "-"
+				"data": "<YAMAHA_AV cmd=\"PUT\"><Main_Zone><Power_Control><Sleep>${data}</Sleep></Power_Control></Main_Zone></YAMAHA_AV>"
 			},
 			"locationGet": {
 				"sReqId": "Basic_Status",

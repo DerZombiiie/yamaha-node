@@ -123,34 +123,6 @@ class FeatureList extends Array {
 }
 module.exports.FeatureList = FeatureList
 
-class Resource { // resource class for Strings & Files (and future remote http things)
-	constructor( location ) {
-		this.location = location
-		this.promise = null
-	}
-
-	read() {
-		this.data = this.location
-	}
-
-	ready() {
-		if( this.promise ) return this.promise
-		else               return new Promise( r=>r() )
-	}
-}
-module.exports.Resource = Resource
-module.exports.StringResource = Resource
-
-class FileResource extends Resource {
-	read() {
-		this.promise = fs.readFile(this.location).then(data => {
-			this.data = data
-			this.promise = false
-		})
-	}
-}
-module.exports.FileResource = FileResource
-
 class Cache extends Date {
 	constructor( dateTime, duration, data ) {
 		super( dateTime !== undefined ? dateTime : Date.now() )  // initialize Date thing

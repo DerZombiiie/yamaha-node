@@ -9,9 +9,8 @@ const { Value, Cache, Range, Toggle, Type, TypeList, Input, InputList, Location,
 module.exports = {Resource, FileResource, StringResource }
 
 class Definition {
-	constructor( resource ) {
-		let data = resource.data
-		this.update( JSON.parse(data.toString()) )
+	constructor( data ) {
+		this.update( data )
 	}
 
 	update( data ) {
@@ -40,7 +39,9 @@ class Host {
 	setFeature( feature, value ) {
 		// invalidate cache of request type:
 		this.requests.byName(feature.locationGet.sReqId).cache.clear()
-		return this.setRequest( feature.setRequest, value.raw ? value.raw : value )
+		return this.setRequest( feature.setRequest, value.raw ? value.raw : value ).then(
+			res => res.YAMAHA_AV.$.RC.toString() === "3" ? true : res.YAMAHA_AV.$.RC
+		)
 	}
 
 	async getRequest( request ) {
@@ -61,14 +62,16 @@ class Host {
 		return parsed		
 	}
 
-	setRequest( request, data ) {
-		return fetch( this.endpoint, {
+	async setRequest( request, data ) {
+		const res = await fetch( this.endpoint, {
 			method: "post",
 			body: request.data.replace("${data}",data),
 			headers: {
 				"Content-Type": "application/xml",
 			}
 		}).then(res => res.text())
+		const parsed = xml.parseStringPromise(res)
+		return parsed
 	}
 }
 

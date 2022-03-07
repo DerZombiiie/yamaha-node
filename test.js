@@ -1,20 +1,22 @@
 // testing
-const {Host, Definition, FileResource} = require("./yamaha-node.js")
+const {Host, Definition} = require("./yamaha-node.js")
 
 async function main() {
-	let file = new FileResource("./Definitions/RX-V475.json")
-	file.read()
-	await file.ready()
+	const file = require("./Definitions/RX-V475.json")
 
-	let def = new Definition( file )
+	const def = new Definition( file )
 
-	var MyHost = new Host("192.168.1.75", def)
+	var MyHost = new Host("192.168.1.74", def)
 
+	let res = await MyHost.setFeature(MyHost.features.find("power"), "Standby")
 	let data = await MyHost.getFeature(MyHost.features.find("power"))
-	console.log("powaa!", data, data.toString())
+	console.log("powaa!", data, data.toString(), res)
 
+	res = await MyHost.setFeature(MyHost.features.find("sleep"), "90")
 	data = await MyHost.getFeature(MyHost.features.find("sleep"))
-	console.log("sleeep", data, data.toString())
+	console.log("sleeep", data, data.toString(), res)
+
+	process.exit()
 
 	data = await MyHost.getFeature(MyHost.features.find("volume"))
 	console.log("volume", data, data.toString())
@@ -22,7 +24,7 @@ async function main() {
 	data = await MyHost.getFeature(MyHost.features.find("bass"))
 	console.log("bassss", data, data.toString())
 
-	let res = await MyHost.setFeature(MyHost.features.find("treble"), 25)
+	res = await MyHost.setFeature(MyHost.features.find("treble"), 25)
 	console.log(res)
 	
 	data = await MyHost.getFeature(MyHost.features.find("treble"))
