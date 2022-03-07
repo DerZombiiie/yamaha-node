@@ -40,7 +40,7 @@ class Host {
 		// invalidate cache of request type:
 		this.requests.byName(feature.locationGet.sReqId).cache.clear()
 		return this.setRequest( feature.setRequest, value.raw ? value.raw : value ).then(
-			res => res.YAMAHA_AV.$.RC.toString() === "3" ? true : res.YAMAHA_AV.$.RC
+			res => res.YAMAHA_AV.$.RC
 		)
 	}
 

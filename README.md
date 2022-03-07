@@ -32,7 +32,7 @@ MyHost.getFeature(feature).then(data => {
 feature = MyHost.features.find("<feature name>")
 // do the request
 MyHost.setFeature(feature, "<state>").then(res => { // state can be a string or number depending on what the feature is
-	console.log(res) // if res === true, then success all other values are unknown errors
+	console.log(res) // if res === "0", then success all other values are unknown errors
 })
 ```
 
