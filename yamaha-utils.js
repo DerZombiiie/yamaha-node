@@ -63,7 +63,7 @@ class Location extends Array {
 
 	apply( pntr ) { // get location with t´some the data thing you know what is meant
 		this.forEach(entry => {
-			// console.log(entry, "@", Object.keys(pntr))
+			console.log(entry, "@", Object.keys(pntr))
 			pntr = pntr[entry]
 		})
 		//console.log(Object.keys(pntr))
@@ -91,7 +91,9 @@ class Feature {
 			case "toggle": return new Toggle(val, this)
 			case "string": return new StringVal(val, this)
 			case "input": return new Input(val, this)
-			case "raw": return {data: val, feature: this}
+			case "number": return new Number(val)
+			case "list": return new List(val, this)
+			case "raw": return new Raw(val, this)
 		}
 	}
 }
@@ -201,6 +203,46 @@ class Value extends Number {
 	}
 }
 module.exports.Value = Value
+
+class Raw {
+	constructor(val, self) {
+		this.data = val
+		this.feature = self
+	}
+
+	raw() {
+		return this
+	}
+
+	toString() {
+		return JSON.stringify(this, null, "  ")
+	}
+}
+
+class List extends Array {
+	constructor( val, mult ) {
+		super()
+
+		for( let line in val ) {
+			if( val[line][0].Attribute[0] !== 'Unselectable' )
+				this.push({
+					text: val[line][0].Txt[0],
+					attr: val[line][0].Attribute[0],
+				})
+		}
+	}
+
+	get raw() {
+		return super.toString()
+	}
+
+	toString() {
+		return this
+				.map(line => `${line.text} (${line.attr})`)
+				.join(", \n")
+	}
+}
+module.exports.List = List
 
 class Toggle extends String {
 	constructor( data, feature ) {

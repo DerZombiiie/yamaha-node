@@ -215,15 +215,58 @@
 		},
 
 		{
-			"name": "SERVER_list",
+			"name": "SERVER_cursor",
 			"type": "raw",
 			"setRequest": null,
 			"locationGet": {
 				"sReqId": "SERVER_List_Info",
 				"location": ["YAMAHA_AV", "SERVER", 0, "List_Info", 0, "Cursor_Position", 0]
 			}
-		}
+		},
 
+		{
+			"name": "SERVER_status",
+			"type": "toggle",
+			"values": {
+				"tName": "Ready",
+				"fName": "Busy"
+			},
+			"setRequest": null,
+			"locationGet": {
+				"sReqId": "SERVER_List_Info",
+				"location": ["YAMAHA_AV", "SERVER", 0, "List_Info", 0, "Menu_Status", 0]
+			}
+		},
+
+		{
+			"name": "SERVER_layer",
+			"type": "number",
+			"setRequest": null,
+			"locationGet": {
+				"sReqId": "SERVER_List_Info",
+				"location": ["YAMAHA_AV", "SERVER", 0, "List_Info", 0, "Menu_Layer", 0]
+			}
+		},
+
+		{
+			"name": "SERVER_layer_name",
+			"type": "raw",
+			"setRequest": null,
+			"locationGet": {
+				"sReqId": "SERVER_List_Info",
+				"location": ["YAMAHA_AV", "SERVER", 0, "List_Info", 0, "Menu_Name", 0]
+			}
+		},
+
+		{
+			"name": "SERVER_list",
+			"type": "list",
+			"setRequest": null,
+			"locationGet": {
+				"sReqId": "SERVER_List_Info",
+				"location": ["YAMAHA_AV", "SERVER", 0, "List_Info", 0, "Current_List", 0]
+			}
+		}
 	],
 	"requests": {
 		"Basic_Status": {
