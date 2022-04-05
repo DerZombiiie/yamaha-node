@@ -93,6 +93,7 @@ class Feature {
 			case "input": return new Input(val, this)
 			case "number": return new Number(val)
 			case "list": return new List(val, this)
+			case "song": return new Song(val, this)
 			case "raw": return new Raw(val, this)
 		}
 	}
@@ -216,6 +217,23 @@ class Raw {
 
 	toString() {
 		return JSON.stringify(this, null, "  ")
+	}
+}
+
+class Song {
+	constructor(val, self) {
+		this.artist = val.Artist[0]
+		this.album  = val.Album[0]
+		this.song   = val.Song[0]
+		this.feature = self
+	}
+
+	raw() {
+		return this
+	}
+
+	toString() {
+		return this.song + ( this.artist ? `by ${this.artist}` : `` ) + ( this.album ? `(${this.album})` : "" )
 	}
 }
 

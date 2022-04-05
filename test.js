@@ -8,7 +8,7 @@ async function main() {
 	let data = await MyHost.getFeature(MyHost.features.find("power"))
 	console.log("powaa!", data, data.toString())
 
-	let res = await MyHost.getFeature(MyHost.features.find("SERVER_cursor"))
+	let res = await MyHost.getFeature(MyHost.features.find("SERVER_pi"))
 	console.log(res.toString())
 }
 

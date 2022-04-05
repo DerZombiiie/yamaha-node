@@ -206,6 +206,42 @@
 		},
 
 		{
+			"name": "SERVER_repeat",
+			"type": "toggle",
+			"values": {
+				"tName": "On",
+				"fName": "Off"
+			},
+			"setRequest": {
+				"data": "<YAMAHA_AV cmd=\"PUT\"><SERVER><Play_Control><Play_Mode><Repeat>${data}</Repeat></Play_Mode</Play_Control></SERVER></YAMAHA_AV>"
+			},
+			"locationGet": {
+				"sReqId": "SERVER_Play_Info",
+				"location": ["YAMAHA_AV", "SERVER", 0, "Play_Info", 0, "Play_Mode", 0, "Repeat", 0]
+			}
+		},
+
+		{
+			"name": "SERVER_meta_info",
+			"type": "song",
+			"setRequest": null,
+			"locationGet": {
+				"sReqId": "SERVER_Play_Info",
+				"location": ["YAMAHA_AV", "SERVER", 0, "Play_Info", 0, "Meta_Info", 0]
+			}
+		},
+
+		{
+			"name": "SERVER_pi",
+			"type": "raw",
+			"setRequest": null,
+			"locationGet": {
+				"sReqId": "SERVER_Play_Info",
+				"location": ["YAMAHA_AV", "SERVER", 0, "Play_Info", 0]
+			}
+		},
+
+		{
 			"name": "SERVER_jump",
 			"type": "raw",
 			"setRequest": {
