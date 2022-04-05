@@ -19,15 +19,14 @@ class Definition {
 		this.requests = new RequestCont( data.requests )
 	}
 }
-module.exports.Definition = Definition
 
 class Host {
-	constructor( host, definition ) {
+	constructor( host ) {
 		this.host = host
-		this.d = definition
-		this.endpoint = `http://${this.host}${definition.endpoint}`
-		this.features = definition.features
-		this.requests = definition.requests
+		this.d = new Definition(require("./definition.json"))
+		this.endpoint = `http://${this.host}${this.d.endpoint}`
+		this.features = this.d.features
+		this.requests = this.d.requests
 	}
 
 	getFeature( feature ) {

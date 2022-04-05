@@ -172,6 +172,57 @@
 				"sReqId": "Basic_Status",
 				"location": ["YAMAHA_AV", "Main_Zone", 0, "Basic_Status", 0, "Input",0]
 			}
+		},
+
+		{
+			"name": "SERVER_play",
+			"type": "toggle",
+			"values": {
+				"tName": "Play",
+				"fName": "Pause"
+			},
+			"setRequest": {
+				"data": "<YAMAHA_AV cmd=\"PUT\"><SERVER><Play_Control><Playback>${data}</Playback></Play_Control></SERVER></YAMAHA_AV>"
+			},
+			"locationGet": {
+				"sReqId": "SERVER_Play_Info",
+				"location": ["YAMAHA_AV", "SERVER", 0, "Play_Info", 0, "Playback_Info", 0]
+			}
+		},
+
+		{
+			"name": "SERVER_shuffle",
+			"type": "toggle",
+			"values": {
+				"tName": "On",
+				"fName": "Off"
+			},
+			"setRequest": {
+				"data": "<YAMAHA_AV cmd=\"PUT\"><SERVER><Play_Control><Play_Mode><Shuffle>${data}</Shuffle></Play_Mode</Play_Control></SERVER></YAMAHA_AV>"
+			},
+			"locationGet": {
+				"sReqId": "SERVER_Play_Info",
+				"location": ["YAMAHA_AV", "SERVER", 0, "Play_Info", 0, "Play_Mode", 0, "Shuffle", 0]
+			}
+		},
+
+		{
+			"name": "SERVER_jump",
+			"type": "raw",
+			"setRequest": {
+				"data": "<YAMAHA_AV cmd=\"PUT\"><SERVER><List_Control><Jump_Line>${data}</Jump_Line></List_Control></SERVER></YAMAHA_AV>"
+			},
+			"locationGet": null
+		},
+
+		{
+			"name": "SERVER_list",
+			"type": "raw",
+			"setRequest": null,
+			"locationGet": {
+				"sReqId": "SERVER_List_Info",
+				"location": ["YAMAHA_AV", "SERVER", 0, "List_Info", 0, "Cursor_Position", 0]
+			}
 		}
 
 	],
@@ -179,6 +230,14 @@
 		"Basic_Status": {
 			"cacheTime": 250,
 			"data": "<YAMAHA_AV cmd=\"GET\"><Main_Zone><Basic_Status>GetParam</Basic_Status></Main_Zone></YAMAHA_AV>"
+		},
+		"SERVER_Play_Info": {
+			"cacheTime": 50,
+			"data": "<YAMAHA_AV cmd=\"GET\"><SERVER><Play_Info>GetParam</Play_Info></SERVER></YAMAHA_AV>"
+		},
+		"SERVER_List_Info": {
+			"cacheTime": 50,
+			"data": "<YAMAHA_AV cmd=\"GET\"><SERVER><List_Info>GetParam</List_Info></SERVER></YAMAHA_AV>"
 		}
 	}
 }

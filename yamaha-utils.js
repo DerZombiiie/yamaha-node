@@ -63,7 +63,7 @@ class Location extends Array {
 
 	apply( pntr ) { // get location with t´some the data thing you know what is meant
 		this.forEach(entry => {
-			//console.log(entry, "@", Object.keys(pntr))
+			// console.log(entry, "@", Object.keys(pntr))
 			pntr = pntr[entry]
 		})
 		//console.log(Object.keys(pntr))
@@ -79,10 +79,10 @@ class Feature {
 		this.values = data.values
 		this.mult = data.mult // multiplier when talking to the AV (if applicable)
 		this.setRequest = data.setRequest
-		this.locationGet = {
+		this.locationGet = data.locationGet ? {
 			"sReqId": data.locationGet.sReqId,
 			"location": new Location( data.locationGet.location ),
-		}
+		} : null
 	}
 
 	parse( val ) {
