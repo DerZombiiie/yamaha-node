@@ -1,5 +1,4 @@
 {
-	"model": "RX-V475",
 	"endpoint": "/YamahaRemoteControl/ctrl",
 	"features": [
 		{
