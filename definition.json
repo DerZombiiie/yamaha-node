@@ -253,7 +253,7 @@
 		{
 			"name": "SERVER_cursor",
 			"type": "raw",
-			"setRequest": null,
+			"setRequest": "<YAMAHA_AV cmd=\"PUT\"><SERVER><List_Control><Cursor>${data}</Cursor></List_Control></SERVER></YAMAHA_AV>",
 			"locationGet": {
 				"sReqId": "SERVER_List_Info",
 				"location": ["YAMAHA_AV", "SERVER", 0, "List_Info", 0, "Cursor_Position", 0]
@@ -315,6 +315,10 @@
 		},
 		"SERVER_List_Info": {
 			"cacheTime": 50,
+			"cacheCondition": {
+				"value": "Ready",
+				"location": ["YAMAHA_AV", "SERVER", 0, "List_Info", 0, "Menu_Status", 0]
+			},
 			"data": "<YAMAHA_AV cmd=\"GET\"><SERVER><List_Info>GetParam</List_Info></SERVER></YAMAHA_AV>"
 		}
 	}

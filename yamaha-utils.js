@@ -127,10 +127,11 @@ class FeatureList extends Array {
 module.exports.FeatureList = FeatureList
 
 class Cache extends Date {
-	constructor( dateTime, duration, data ) {
+	constructor( dateTime, duration, data, condition ) {
 		super( dateTime !== undefined ? dateTime : Date.now() )  // initialize Date thing
 		this.duration = duration ? duration : 1000 // time Cache is valid after refresh (in ms)
 		this.data = data ? data : false            // set data (if applicble)
+		this.condition = condition                 // condition if data is good
 	}
 
 	getData() {
@@ -148,7 +149,17 @@ class Cache extends Date {
 	}
 	
 	get valid() {
-		return !(( Date.now() - this.duration ) > this.getTime()) 
+		let cond
+		if( this.condition ) {
+			let val
+			this.condition.location.forEach( spec => {
+				val = val[spec]
+			})
+			cond = this.condition.value === val
+		} else
+			cond = true
+
+		return !(( Date.now() - this.duration ) > this.getTime()) && cond
 	}
 }
 
